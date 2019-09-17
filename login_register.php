@@ -151,12 +151,15 @@
 				<form action="" method="post" role="form" class="p-2" id="forgot-frm">
 					<div class="form-group">
 						<small class="text-muted">
-							To reset your password, enter the email address and we will send reset password instructions on your email.
+							To reset your password, enter the email address, new password.
 						</small>
 
 					</div>
 					<div class="form-group">
 						<input type="email" name="femail" class="form-control" placeholder="Email" required>
+					</div>
+					<div class="form-group">
+						<input type="text" name="newpassword" class="form-control" placeholder="New Password" required>
 					</div>
 					<div class="form-group">
 						<input type="submit" name="forgot" id="forgot" value="Reset" class="btn btn-primary btn-block">
