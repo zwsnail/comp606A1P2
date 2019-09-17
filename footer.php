@@ -9,18 +9,18 @@
 			</div> 
 			<div class="col-md-3 ftr-wthree-grids">
 				<h3>Contact Me</h3>
-				<p>123 bla bla City.<br>
+				<p>Massage Clinic Hamilton | Bookings 07 856 0000<br>
 					<span>Office: 123456789</span>
 				</p>
 				
 			</div> 
 			<div class="col-md-4 ftr-wthree-grids">
 				<h3>Location</h3>
-				<p>Map.</p>
+				<p>000 Cambridge Road in Hillcres, Hamilton, New Zealand</p>
 			</div>
 			<div class="clearfix"> </div>
 			<div class="footer-copy">
-				<p>@ copyright 2019 jmdhfjdfgsfkjjk</p>
+				<p>@ copyright 2005-2019</p>
 			</div>
 		</div>
 	</div>

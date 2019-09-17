@@ -37,7 +37,7 @@
 								<li><a href="index.php" class="link-kumya active scroll"><span data-letters="Home">Home</span></a></li>
 								<li><a href="about.php" class="link-kumya"><span data-letters="About">About</span></a></li>	
 								<li><a href="contact.php" class="link-kumya"><span data-letters="Contact">Contact</span></a></li>
-								<li><a href="#" class="link-kumya"><span data-letters="Login">Login/Registration</span></a></li>
+								<li><a href="login_register.php" class="link-kumya"><span data-letters="Login">Login/Registration</span></a></li>
 							</ul>	
 							<div class="clearfix"> </div>
 						</div>
@@ -73,28 +73,28 @@
 					<ul class="rslides" id="slider3">
 						<li>
 							<div class="bnr-agileinfo">
-								<h2>You wanna get a new look from us</h2>	
-								<h3>Lorem Ipsum was popularised In sit amet sapien eros Integer dolore magna aliqua Temporibus autem quibusdam</h3>	
+								<h2>Get a new look from us</h2>	
+								<h3>If you’re looking for massage therapy in Hamilton just give us a call because looking after aching muscles is what I’ve been doing for the past years</h3>	
 								<div class="rslsmore">
-									<a href="#booking" class="button-pipaluk button--inverted">Book Now</a>
+									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
 								</div>	
 							</div>	
 						</li>
 						<li>
 							<div class="bnr-agileinfo">
-								<h4>Tex2</h4>	
-								<h3>lpsum was popularised autem quibusdam</h3>	
+								<h4>Convenient</h4>	
+								<h3>Locasted just 10 minutes from the CBD with easy parking</h3>	
 								<div class="rslsmore">
-									<a href="#booking" class="button-pipaluk button--inverted"> Book Now</a>
+									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
 								</div>	
 							</div>	
 						</li>
 						<li>
 							<div class="bnr-agileinfo">
-								<h4>Text3</h4>	
-								<h3>Lorem Ipsum was popularised In sit amet sapien eros Integer dolore magna aliqua </h3>	
+								<h4>Well Equipped</h4>	
+								<h3>Ergonomically designed massage tables for your comfort</h3>	
 								<div class="rslsmore">
-									<a href="#booking" class="button-pipaluk button--inverted">Book Now</a>
+									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
 								</div>	
 							</div>	
 						</li>
