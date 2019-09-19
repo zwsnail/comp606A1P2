@@ -16,5 +16,6 @@ and password='".md5($password)."'";
          }else{
 		header("Location:wrong_login.php");
 	}
+}
 ?>
 
