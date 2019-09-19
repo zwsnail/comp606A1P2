@@ -1,3 +1,13 @@
+<?php
+session_start();
+require('db_connect.php');
+if(isset($_SESSION["email"])){
+$email = $_SESSION["email"];
+$sql1 = "SELECT * FROM user WHERE email='$email'";
+$result1 = mysqli_query($con, $sql1);
+$username = mysqli_fetch_assoc($result1)['fullname'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +47,13 @@
 								<li><a href="index.php" class="link-kumya active scroll"><span data-letters="Home">Home</span></a></li>
 								<li><a href="about.php" class="link-kumya"><span data-letters="About">About</span></a></li>	
 								<li><a href="contact.php" class="link-kumya"><span data-letters="Contact">Contact</span></a></li>
-								<li><a href="login_register.php" class="link-kumya"><span data-letters="Login">Login/Registration</span></a></li>
+								<?php if(isset($_SESSION["email"])){									
+									echo'<li><a href="logout.php" class="link-kumya"><span data-letters="Logout">Logout</span></a></li>';
+ 								}else{
+									echo'<li><a href="login_register.php" class="link-kumya"><span data-letters="Login">Login/Registration</span></a></li>';
+
+								 } ?>
+
 							</ul>	
 							<div class="clearfix"> </div>
 						</div>
