@@ -108,18 +108,32 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 							<div class="bnr-agileinfo">
 								<h4>Convenient</h4>	
 								<h3>Locasted just 10 minutes from the CBD with easy parking</h3>	
-								<div class="rslsmore">
-									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>	
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>	
 							</div>	
 						</li>
 						<li>
 							<div class="bnr-agileinfo">
 								<h4>Well Equipped</h4>	
 								<h3>Ergonomically designed massage tables for your comfort</h3>	
-								<div class="rslsmore">
-									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>	
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>	
 							</div>	
 						</li>
 					</ul>
