@@ -120,17 +120,32 @@
 					<h4>Take a short break</h4>
 					<h3>$40</h3>
 					<h5>30 minutes</h5>
-					<div class="rslsmore">
-						<a href="login_register.php" class="button-pipaluk button--inverted"> Book Now</a>
-					</div>	
+					<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted"> Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/register</a>
+								</div>';
+
+								 } ?>
+						
 				</div>
 				<div class="col-md-4 slid-grids">
 					<h4>Deep relaxing</h4>
 					<h3>$75</h3>
 					<h5>60 minutes</h5>
-					<div class="rslsmore">
-						<a href="login_register.php" class="button-pipaluk button--inverted"> Book Now</a>
-					</div>	
+					<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted"> Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/register</a>
+								</div>';
+
+								 } ?>	
 				</div>
 				
 				<div class="clearfix"> </div>
