@@ -31,9 +31,9 @@
 		<div class="row" >
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="login-box">
 				<h2 class="text-center mt-2">Login</h2>
-				<form action="login_here.php" method="post" role="form" class="p-2" id="login-frm">
+				<form action="index.php" method="post" role="form" class="p-2" id="login-frm">
 					<div class="form-group">
-						<input type="email" name="email" class="form-control" placeholder="Email" required>
+						<input type="email" name="email" class="form-control" placeholder="Email" id="login_email" required>
 					</div>
 					<div class="form-group">
 						<input type="password" name="password" class="form-control" placeholder="Password" required minlength="6">
@@ -83,55 +83,14 @@
 					<div class="form-group">
 						<input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
 					</div>
-					<div class="form-group">
-						<label>Which time would you like to come?<input type="datetime-local" name="massage_time" class="form-control" required></label>
-					</div>
-
-					<div class="form-group">
-
-
-				      <label for="sel">May I know the reason you want to have the massage?(hold shift to select more than one)</label>
-				      <select multiple class="form-control" name="reason" id="sel">
-				        <option name="reason" value="Recovering from injury">Recovering from injury</option>
-				        <option name="reason" value="Dealing with anxiety">Dealing with anxiety</option>
-				        <option name="reason" value="Just relaxing">Just relaxing</option>
-				        <option name="reason"value="Other reason I don't want to say" >Other reason I don't want to say</option>
-				      </select>
-
-					</div>
-
-
-					<div class="form-group">
-						<label>Please choose the package</label>
-						<div class="custom-control custom-checkbox mb-3">
-					       <input type="checkbox" class="custom-control-input" id="price1" name="price" value="45">
-					       <label class="custom-control-label" for="price1">$45 for 30min</label>
-					    </div>
-						<div class="custom-control custom-checkbox mb-3">
-					       <input type="checkbox" class="custom-control-input" id="price2" name="price" value="75">
-					       <label class="custom-control-label" for="price2">$75 for 60min</label>
-				    	</div>
-				    </div>
-
-
-<!-- 					<div class="form-group">
-						<label>Please choose the package</label>
-						<label><input type="radio" name="price" class="form-control" value="45">$45 for 30min</label>
-						<label><input type="radio" name="price" class="form-control" value="75">$75 for 60min</label>
-					</div> -->
-
+					
 					<div class="form-group">
 						<input type="password" name="password" id="pass"class="form-control" placeholder="Password" required minlength="6">
 					</div>
 					<div class="form-group">
 						<input type="password" name="cpass" id="cpass" class="form-control" placeholder="Comfirm Password" required minlength="6">
 					</div>
-					<div class="form-group">
-						<div class="custom-control custom-checkbox">
-							<input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-							<label for="customCheck2" class="custom-control-label">I green to the <a href="#">terms & conditions.</a></label>
-						</div>
-					</div>
+					
 					<div class="form-group">
 						<input type="submit" name="register" id="register" value="Register" class="btn btn-primary btn-block">
 					</div>
@@ -160,7 +119,7 @@
 
 					</div>
 					<div class="form-group">
-						<input type="email" name="femail" class="form-control" placeholder="Email" required>
+						<input type="email" name="email" class="form-control" placeholder="Email" id="pass_email" required>
 					</div>
 					<div class="form-group">
 						<input type="password" name="password" id="rpass"class="form-control" placeholder="Password" required minlength="6">
@@ -212,7 +171,52 @@
 		  });
 
 		  // validate the form
-		   	$("#login-frm").validate();
+		   	$("#login-frm").validate({
+				rules:{
+		   			email: {
+            			required: true,
+            			email: true,
+                	remote: {
+                   	 	url: "check_loginemail.php",
+                    	type: "post"
+                 	}
+        			},
+				password: {
+            			required: true,
+						remote: {
+							headers: {
+           					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       					},
+                   	 	url: "check_loginpassword.php",
+                    	type: "post",
+						data: {
+							email: function() {
+							return $('#login_email').val();
+							}
+						},
+						dataFilter: function(response) {
+						var data = JSON.parse(response);
+
+						return data.success;
+					},
+                 	}
+                	
+        		}
+    		},
+    		messages: {
+        		email: {
+            		required: "Please enter your email address.",
+            		email: "Please enter a valid email address.",
+            		remote: "Email Does not exist. please sign up!"
+        		},
+				password: {
+            		required: "Please enter your password.",
+					remote: $.validator.format("Email Invalid"),
+            		
+        		}
+    		}
+
+			   });
 		   	$("#register-frm").validate({
 		   		rules:{
 		   			cpass:{
@@ -237,9 +241,24 @@
 	});
 		   	$("#forgot-frm").validate({
 		   		rules:{
-		   			rcpass:{
+					rcpass:{
 		   				equalTo:"#rpass",
-		   			}
+		   			},
+					email: {
+            			required: true,
+            			email: true,
+                	remote: {
+                   	 	url: "check_loginemail.php",
+                    	type: "post"
+                 	}
+        			}
+			   },
+			   messages: {
+        		email: {
+            		required: "Please enter your email address.",
+            		email: "Please enter a valid email address.",
+            		remote: "Email Does not exist. please check email!"
+        		}
 			   }
 		});
 		});
