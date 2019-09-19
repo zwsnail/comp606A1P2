@@ -1,3 +1,11 @@
+<?php
+require('db_connect.php');
+session_start();
+if(!isset($_SESSION["email"])){
+	header("Location: login_first.php");
+	exit(); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +27,7 @@
 		<div class="row">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Booking</h2>
-				<form action="insert_data.php" method="post" role="form" class="p-2" id="booking-frm">
+				<form action="insert_booking.php" method="post" role="form" class="p-2" id="booking-frm">
 					<div class="form-group">
 						<input type="text" name="fullname" class="form-control" placeholder="Fullname" required minlength="3">
 					</div>
