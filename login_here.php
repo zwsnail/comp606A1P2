@@ -14,7 +14,7 @@ and password='".md5($password)."'";
 	    $_SESSION['email'] = $email;
 	    header("Location: index.php");
          }else{
-			header("Location:login_register.php");
+		header("Location:wrong_login.php");
 	}
-}?>
+?>
 
