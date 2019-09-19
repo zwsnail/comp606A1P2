@@ -31,7 +31,7 @@
 		<div class="row" >
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="login-box">
 				<h2 class="text-center mt-2">Login</h2>
-				<form action="index.php" method="post" role="form" class="p-2" id="login-frm">
+				<form action="login_here.php" method="post" role="form" class="p-2" id="login-frm">
 					<div class="form-group">
 						<input type="email" name="email" class="form-control" placeholder="Email" id="login_email" required>
 					</div>
@@ -182,26 +182,8 @@
                  	}
         			},
 				password: {
-            			required: true,
-						remote: {
-							headers: {
-           					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-       					},
-                   	 	url: "check_loginpassword.php",
-                    	type: "post",
-						data: {
-							email: function() {
-							return $('#login_email').val();
-							}
-						},
-						dataFilter: function(response) {
-						var data = JSON.parse(response);
-
-						return data.success;
-					},
-                 	}
-                	
-        		}
+            			required: true
+                	}
     		},
     		messages: {
         		email: {
@@ -210,9 +192,7 @@
             		remote: "Email Does not exist. please sign up!"
         		},
 				password: {
-            		required: "Please enter your password.",
-					remote: $.validator.format("Email Invalid"),
-            		
+            		required: "Please enter your password."
         		}
     		}
 
