@@ -91,9 +91,17 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 							<div class="bnr-agileinfo">
 								<h2>Get a new look from us</h2>	
 								<h3>If you’re looking for massage therapy in Hamilton just give us a call because looking after aching muscles is what I’ve been doing for the past years</h3>	
-								<div class="rslsmore">
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
 									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>	
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>
+									
 							</div>	
 						</li>
 						<li>
@@ -101,7 +109,7 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 								<h4>Convenient</h4>	
 								<h3>Locasted just 10 minutes from the CBD with easy parking</h3>	
 								<div class="rslsmore">
-									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
 								</div>	
 							</div>	
 						</li>
@@ -110,7 +118,7 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 								<h4>Well Equipped</h4>	
 								<h3>Ergonomically designed massage tables for your comfort</h3>	
 								<div class="rslsmore">
-									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+									<a href="login_register.php" class="button-pipaluk button--inverted">Book Now</a>
 								</div>	
 							</div>	
 						</li>
