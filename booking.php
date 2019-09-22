@@ -4,7 +4,26 @@ session_start();
 if(!isset($_SESSION["email"])){
 	header("Location: login_first.php");
 	exit(); 
+}else{
+	$email = $_SESSION["email"];
+	$query = "SELECT * FROM user WHERE email='$email'";
+	$result = mysqli_query($con,$query) or die(mysql_error());
+    //print_r($result);
+	if($result != null){
+		$userid = mysqli_fetch_assoc($result)['id'];
+	}
 }
+
+?>
+<?php
+date_default_timezone_set("Pacific/Auckland");
+$date = new DateTime();
+$min_date= $date->format('Y-m-d\TH:i:s');
+
+$current_date = new DateTime(); // Date object using current date and time
+$current_date= $current_date->format('Y-m-d\TH:i:s'); 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +36,21 @@ if(!isset($_SESSION["email"])){
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	$.noConflict();
+  jQuery( function($) {
+	$( "#opener" ).click(function() {
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+});
+});
+  </script>
 	
 	
 </head>
@@ -28,88 +62,51 @@ if(!isset($_SESSION["email"])){
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Booking</h2>
 				<form action="insert_booking.php" method="post" role="form" class="p-2" id="booking-frm">
-					<div class="form-group">
-						<input type="text" name="fullname" class="form-control" placeholder="Fullname" required minlength="3">
+				    <input type="hidden" value="<?php echo $userid; ?>" name="user_id">
+					<input type="hidden" value="<?php echo $email; ?>" name="user_email">
+				    <div class="form-group">
+						<label>Choose an appointment date<input type="datetime-local" name="massage_time" class="form-control" value="<?php echo $current_date; ?>" min ="<?php echo $min_date; ?>" required></label>
 					</div>
 					<div class="form-group">
-					<label><input type="radio" name="gender" class=".radio-inline" value="female" required>Female</label>
-					<label><input type="radio" name="gender" class=".radio-inline" value="male" required>Male</label>
-					</div>
-
-					<div class="form-group">
-						<label>Date of Birthday<input type="date" class="form-control" name="birth_date" value="date" required></label>
-					</div>
-                    <div class="form-group">
-						<input type="text" name="mob_number" class="form-control" placeholder="Mobile number">
-					</div>
-					<div class="form-group">
-						<input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
-					</div>
-					<div class="form-group">
-						<label>Which time would you like to come?<input type="datetime-local" name="massage_time" class="form-control" required></label>
-					</div>
-
-					<div class="form-group">
-
-
-				      <label for="sel">May I know the reason you want to have the massage?(hold shift to select more than one)</label>
-				      <select multiple class="form-control" name="reason" id="sel">
+					 <label for="sel">May I know the reason you want to have the massage?(hold shift to select more than one)</label>
+				      <select  class="form-control" name="reason" id="sel">
 				        <option name="reason" value="Recovering from injury">Recovering from injury</option>
 				        <option name="reason" value="Dealing with anxiety">Dealing with anxiety</option>
 				        <option name="reason" value="Just relaxing">Just relaxing</option>
-				        <option name="reason"value="Other reason I don't want to say" >Other reason I don't want to say</option>
+				        <option name="reason"value="Other reason" >Other reason I don't want to say</option>
 				      </select>
 
 					</div>
-
-
 					<div class="form-group">
-						<label>Please choose the package</label>
-						<div class="custom-control custom-checkbox mb-3">
-					       <input type="checkbox" class="custom-control-input" id="price1" name="price" value="45">
-					       <label class="custom-control-label" for="price1">$45 for 30min</label>
-					    </div>
-						<div class="custom-control custom-checkbox mb-3">
-					       <input type="checkbox" class="custom-control-input" id="price2" name="price" value="75">
-					       <label class="custom-control-label" for="price2">$75 for 60min</label>
-				    	</div>
-				    </div>
+					 <label for="sel">Please choose the package</label>
+				      <select  class="form-control" name="price" id="price">
+				        <option name="price" value="$45 for 30min">$45 for 30min</option>
+				        <option name="price" value="$75 for 60min">$75 for 60min</option>
+				      </select>
 
-
-<!-- 					<div class="form-group">
-						<label>Please choose the package</label>
-						<label><input type="radio" name="price" class="form-control" value="45">$45 for 30min</label>
-						<label><input type="radio" name="price" class="form-control" value="75">$75 for 60min</label>
-					</div> -->
-
-					<div class="form-group">
-						<input type="password" name="password" id="pass"class="form-control" placeholder="Password" required minlength="6">
 					</div>
-					<div class="form-group">
-						<input type="password" name="cpass" id="cpass" class="form-control" placeholder="Comfirm Password" required minlength="6">
-					</div>
+					
 					<div class="form-group">
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-							<label for="customCheck2" class="custom-control-label">I green to the <a href="#">terms & conditions.</a></label>
+						<input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
+						<label for="customCheck2" class="custom-control-label">I green to the <a href="#" id="opener">terms & conditions.</a></label>
+
 						</div>
 					</div>
 					<div class="form-group">
 						<input type="submit" name="register" id="register" value="Register" class="btn btn-primary btn-block">
 					</div>
-					<div class="form-group"> 
-						<p class="text-center">Already Registered?<a href="#" id="login-btn"> Login Here</a></p>
-						
-					</div>
-
-
 				</form>
-
 			</div>
 		</div>
 </div>
-
-	</div>
+</div>
+<div id="dialog-message" title="Important Message" style="display:none;">
+  <p>
+    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+    You can cancle your booking within 24 hours only.
+  </p>
+</div>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonyous"></script>
 	<script src="http://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
 
@@ -132,21 +129,24 @@ if(!isset($_SESSION["email"])){
                     url: "check_email.php",
                     type: "post"
                  }
-        }
+        },
+		rem:{
+			required: true
+		}
     },
     messages: {
         email: {
             required: "Please enter your email address.",
             email: "Please enter a valid email address.",
             remote: "Email does not exist. please sign up."
-        }
+        },
+		rem:{
+			required: "Please check term and conditions."
+		}
     }
 	});
 		 
-		});
+});
 	</script>
-
-
-
 </body>
 </html>
