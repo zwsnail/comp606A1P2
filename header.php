@@ -7,6 +7,13 @@ $sql1 = "SELECT * FROM user WHERE email='$email'";
 $result1 = mysqli_query($con, $sql1);
 $username = mysqli_fetch_assoc($result1)['fullname'];
 }
+
+if(isset($_SESSION["therapist_email"])){
+	$therapist_email = $_SESSION["therapist_email"];
+	$sql1 = "SELECT * FROM therapist WHERE therapist_email='$therapist_email'";
+	$result1 = mysqli_query($con, $sql1);
+	$username = mysqli_fetch_assoc($result1)['fullname'];
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +33,7 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 </head>
 <body>
 	<!-- banner -->
-	<div id="home" class="rsbanner">
-		<div class="banner-info">
+	
 			<!-- navigation -->
 			<div class="top-nav">
 				<nav>
@@ -47,10 +53,18 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 								<li><a href="index.php" class="link-kumya active scroll"><span data-letters="Home">Home</span></a></li>
 								<li><a href="about.php" class="link-kumya"><span data-letters="About">About</span></a></li>	
 								<li><a href="contact.php" class="link-kumya"><span data-letters="Contact">Contact</span></a></li>
-								<?php if(isset($_SESSION["email"])){									
+								<?php if(isset($_SESSION["email"])){	
+									echo'<li><a href="user_profile.php" class="link-kumya"><span data-letters="profile">Profile</span></a></li>';								
 									echo'<li><a href="logout.php" class="link-kumya"><span data-letters="Logout">Logout</span></a></li>';
  								}else{
 									echo'<li><a href="login_register.php" class="link-kumya"><span data-letters="Login">Login/Registration</span></a></li>';
+
+								 } ?>
+								 <?php if(isset($_SESSION["therapist_email"])){	
+									echo'<li><a href="therapist_profile.php" class="link-kumya"><span data-letters="profile">Profile</span></a></li>';								
+									echo'<li><a href="therapist_logout.php" class="link-kumya"><span data-letters="Logout">Logout</span></a></li>';
+ 								}else{
+									echo'<li><a href="therapist_login.php" class="link-kumya"><span data-letters="Login">Therapist Login</span></a></li>';
 
 								 } ?>
 
@@ -61,85 +75,7 @@ $username = mysqli_fetch_assoc($result1)['fullname'];
 				</nav>
 			</div>	
 			<!-- //navigation -->
-			<div class="banner-text">
-				<!-- banner Slider starts Here -->
-				<script src="js/responsiveslides.min.js"></script>
-				<script>
-					// You can also use "$(window).load(function() {"
-					$(function () {
-					  // Slideshow 3
-					  $("#slider3").responsiveSlides({
-						auto: true,
-						pager: true,
-						nav: false,
-						speed: 500,
-						namespace: "callbacks",
-						before: function () {
-						  $('.events').append("<li>before event fired.</li>");
-						},
-						after: function () {
-						  $('.events').append("<li>after event fired.</li>");
-						}
-					  });
-				
-					});
-				</script>
-				<!-- //End-slider-script -->
-				<div  id="top" class="callbacks_container">
-					<ul class="rslides" id="slider3">
-						<li>
-							<div class="bnr-agileinfo">
-								<h2>Get a new look from us</h2>	
-								<h3>If you’re looking for massage therapy in Hamilton just give us a call because looking after aching muscles is what I’ve been doing for the past years</h3>	
-								<?php if(isset($_SESSION["email"])){									
-									echo'<div class="rslsmore">
-									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>';
- 								}else{
-									echo'<div class="rslsmore">
-									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
-								</div>';
-
-								 } ?>
-									
-							</div>	
-						</li>
-						<li>
-							<div class="bnr-agileinfo">
-								<h4>Convenient</h4>	
-								<h3>Locasted just 10 minutes from the CBD with easy parking</h3>	
-								<?php if(isset($_SESSION["email"])){									
-									echo'<div class="rslsmore">
-									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>';
- 								}else{
-									echo'<div class="rslsmore">
-									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
-								</div>';
-
-								 } ?>	
-							</div>	
-						</li>
-						<li>
-							<div class="bnr-agileinfo">
-								<h4>Well Equipped</h4>	
-								<h3>Ergonomically designed massage tables for your comfort</h3>	
-								<?php if(isset($_SESSION["email"])){									
-									echo'<div class="rslsmore">
-									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
-								</div>';
- 								}else{
-									echo'<div class="rslsmore">
-									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
-								</div>';
-
-								 } ?>	
-							</div>	
-						</li>
-					</ul>
-				</div>
-			</div>	
-		</div>
-	</div>
+			
+	
 	<!-- //banner -->
 	
