@@ -17,4 +17,4 @@ $result = mysqli_query($con,$query);   //send data to database
         	header("Location:login_register.php");
 	} 
 } 
-?>    
+?> 
