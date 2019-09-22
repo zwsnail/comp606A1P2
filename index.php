@@ -1,4 +1,86 @@
 <?php require_once("header.php"); ?>
+<div id="home" class="rsbanner">
+		<div class="banner-info">
+<div class="banner-text">
+				<!-- banner Slider starts Here -->
+				<script src="js/responsiveslides.min.js"></script>
+				<script>
+					// You can also use "$(window).load(function() {"
+					$(function () {
+					  // Slideshow 3
+					  $("#slider3").responsiveSlides({
+						auto: true,
+						pager: true,
+						nav: false,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+						  $('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+						  $('.events').append("<li>after event fired.</li>");
+						}
+					  });
+				
+					});
+				</script>
+				<!-- //End-slider-script -->
+				<div  id="top" class="callbacks_container">
+					<ul class="rslides" id="slider3">
+						<li>
+							<div class="bnr-agileinfo">
+								<h2>Get a new look from us</h2>	
+								<h3>If you’re looking for massage therapy in Hamilton just give us a call because looking after aching muscles is what I’ve been doing for the past years</h3>	
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>
+									
+							</div>	
+						</li>
+						<li>
+							<div class="bnr-agileinfo">
+								<h4>Convenient</h4>	
+								<h3>Locasted just 10 minutes from the CBD with easy parking</h3>	
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>	
+							</div>	
+						</li>
+						<li>
+							<div class="bnr-agileinfo">
+								<h4>Well Equipped</h4>	
+								<h3>Ergonomically designed massage tables for your comfort</h3>	
+								<?php if(isset($_SESSION["email"])){									
+									echo'<div class="rslsmore">
+									<a href="booking.php" class="button-pipaluk button--inverted">Book Now</a>
+								</div>';
+ 								}else{
+									echo'<div class="rslsmore">
+									<a href="login_register.php" class="button-pipaluk button--inverted">Login/Register</a>
+								</div>';
+
+								 } ?>	
+							</div>	
+						</li>
+					</ul>
+				</div>
+			</div>	
+			</div>
+			</div>
 	<!-- welcome -->
 	<div class="welcome rs">
 		<div class="container">
