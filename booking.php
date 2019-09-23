@@ -2,7 +2,7 @@
 require('db_connect.php');
 session_start();
 if(!isset($_SESSION["email"])){
-	header("Location: login_first.php");
+	header("Location: login_register.php");
 	exit(); 
 }else{
 	$email = $_SESSION["email"];
@@ -12,16 +12,32 @@ if(!isset($_SESSION["email"])){
 	if($result != null){
 		$userid = mysqli_fetch_assoc($result)['id'];
 	}
+
+	$query2 = "SELECT * FROM booking WHERE user_id='$userid'";
+	$result = mysqli_query($con,$query2) or die(mysql_error());
+	if (mysqli_num_rows($result) > 0) {
+		// output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+		// output data of each row
+		//print_r($row);
+	
+		echo $row['time'];
+		
+		//echo $row['reason'];
+		//echo $row['price'];
+		//die("hello");
+	}
+}
 }
 
 ?>
 <?php
 date_default_timezone_set("Pacific/Auckland");
 $date = new DateTime();
-$min_date= $date->format('Y-m-d\TH:i:s');
+$min_date= $date->format('Y-m-d');
 
 $current_date = new DateTime(); // Date object using current date and time
-$current_date= $current_date->format('Y-m-d\TH:i:s'); 
+$current_date= $current_date->format('Y-m-d'); 
 
 
 ?>
@@ -65,7 +81,31 @@ $current_date= $current_date->format('Y-m-d\TH:i:s');
 				    <input type="hidden" value="<?php echo $userid; ?>" name="user_id">
 					<input type="hidden" value="<?php echo $email; ?>" name="user_email">
 				    <div class="form-group">
-						<label>Choose an appointment date<input type="datetime-local" name="massage_time" class="form-control" value="<?php echo $current_date; ?>" min ="<?php echo $min_date; ?>" required></label>
+						<label>Choose an appointment date<input type="date" name="massage_time" class="form-control" value="<?php echo $current_date; ?>" min ="<?php echo $min_date; ?>" required></label>
+					</div>
+					<div class="form-group">
+					 <label for="time">Select Time</label>
+				      <select  class="form-control" name="time" id="sel">
+				        <option name="time" value="11:00">11:00</option>
+				        <option name="time" value="12:00">12:00</option>
+				        <option name="time" value="1:00">1:00</option>
+				        <option name="time"  value="2:00">2:00</option>
+						<option name="time"  value="3:00">3:00</option>
+						<option name="time"  value="4:00">4:00</option>
+				      </select>
+
+					</div>
+					<div class="form-group">
+					 <label for="massage_type">Massage Type</label>
+				      <select  class="form-control" name="massage_type" id="sel">
+				        <option name="massage_type" value="Deep Tissue Massage">Deep Tissue Massage</option>
+				        <option name="massage_type" value="Aromatherapy Massage">Aromatherapy Massage</option>
+				        <option name="massage_type" value="Sports Massage">Sports Massage</option>
+				        <option name="massage_type"value="Therapeutic Massage" >Therapeutic Massage</option>
+						<option name="massage_type"value="Relaxation Massage" >Relaxation Massage</option>
+
+				      </select>
+
 					</div>
 					<div class="form-group">
 					 <label for="sel">May I know the reason you want to have the massage?(hold shift to select more than one)</label>
@@ -133,6 +173,7 @@ $current_date= $current_date->format('Y-m-d\TH:i:s');
 		rem:{
 			required: true
 		}
+
     },
     messages: {
         email: {
