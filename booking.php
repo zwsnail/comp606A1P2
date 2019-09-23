@@ -1,5 +1,6 @@
 <?php
 require('db_connect.php');
+require('header.php');
 session_start();
 if(!isset($_SESSION["email"])){
 	header("Location: login_register.php");
@@ -20,12 +21,41 @@ if(!isset($_SESSION["email"])){
 	while($row = mysqli_fetch_assoc($result)) {
 		// output data of each row
 		//print_r($row);
-	
-		echo $row['time'];
+	    $massage_date =  $row['massage_time'];
+		$massage_time = $row['time'];
+		?>
+		<script>
+		$( document ).ready(function() {
+		var massage_date = "<?php echo $row['massage_time']; ?>";
+		var massage_time = "<?php echo $row['time']; ?>";
+        var date = $("#massage_time").val();
+		var time = $("#time").val();
+		$("#massage_time").on("change", function () {
+    		var date = $(this).val();
+			if(massage_date == date && massage_time == time){
+		}
+   			});
+		$("#time").on("change", function () {
+    		var time = $(this).val();
+			if(massage_date == date && massage_time == time){
+				//alert("#time option[value='"+time+"']");
+		     $("#time option[value='"+time+"']").prop("disabled",true);
+		}else{
+			$("#time option[value='"+time+"']").removeAttr("disabled");
+		}
+   		});
+		   if(massage_date == date && massage_time == time){
+			//alert("#time option[value='"+time+"']");
+		     $("#time option[value='"+time+"']").prop("disabled",true);
+          //alert("matched");
+		 
+		}else{
+			$("#time option[value='"+time+"']").removeAttr("disabled");
+		}
+		 });
 		
-		//echo $row['reason'];
-		//echo $row['price'];
-		//die("hello");
+		</script>
+		<?php
 	}
 }
 }
@@ -74,18 +104,18 @@ $current_date= $current_date->format('Y-m-d');
 	<div class="container mt-4">
 	<!-- booking form -->
 
-		<div class="row">
+		<div class="row form_container" >
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
 				<h2 class="text-center mt-2">Booking</h2>
 				<form action="insert_booking.php" method="post" role="form" class="p-2" id="booking-frm">
 				    <input type="hidden" value="<?php echo $userid; ?>" name="user_id">
 					<input type="hidden" value="<?php echo $email; ?>" name="user_email">
 				    <div class="form-group">
-						<label>Choose an appointment date<input type="date" name="massage_time" class="form-control" value="<?php echo $current_date; ?>" min ="<?php echo $min_date; ?>" required></label>
+						<label>Choose an appointment date<input id="massage_time" type="date" name="massage_time" class="form-control" value="<?php echo $current_date; ?>" min ="<?php echo $min_date; ?>" required></label>
 					</div>
 					<div class="form-group">
 					 <label for="time">Select Time</label>
-				      <select  class="form-control" name="time" id="sel">
+				      <select  class="form-control" name="time" id="time">
 				        <option name="time" value="11:00">11:00</option>
 				        <option name="time" value="12:00">12:00</option>
 				        <option name="time" value="1:00">1:00</option>
@@ -172,6 +202,9 @@ $current_date= $current_date->format('Y-m-d');
         },
 		rem:{
 			required: true
+		},
+		time:{
+			required: true
 		}
 
     },
@@ -181,6 +214,9 @@ $current_date= $current_date->format('Y-m-d');
             email: "Please enter a valid email address.",
             remote: "Email does not exist. please sign up."
         },
+		time:{
+			required: "This time is already booked. Please choose other timing."
+		},
 		rem:{
 			required: "Please check term and conditions."
 		}
