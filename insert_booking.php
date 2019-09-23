@@ -1,6 +1,6 @@
 <?php 
 require_once("db_connect.php"); 
-require_once("./email/PHPMailerAutoload.php");
+//require_once("./email/PHPMailerAutoload.php");
 ?>
 
 <?php
@@ -15,14 +15,18 @@ require_once("./email/PHPMailerAutoload.php");
   $user_email = stripslashes($_POST['user_email']);
   $user_email = mysqli_real_escape_string($con,$user_email); 
  $massage_time = stripslashes($_POST['massage_time']);
- $massage_time = mysqli_real_escape_string($con,$massage_time); 
+ $massage_time = mysqli_real_escape_string($con,$massage_time);
+ $time = stripslashes($_POST['time']);
+ $time = mysqli_real_escape_string($con,$time); 
+ $massage_type = stripslashes($_POST['massage_type']);
+ $massage_type = mysqli_real_escape_string($con,$massage_type); 
  $reason = stripslashes($_POST['reason']);
   $reason = mysqli_real_escape_string($con,$reason); 
   $price = stripslashes($_POST['price']);
 	$price = mysqli_real_escape_string($con,$price); 
     $created = date("Y-m-d H:i:s");
-$query = "INSERT into booking(user_id,massage_time,reason,price,created)
-		VALUES('$user_id','$massage_time','$reason','$price','$created')";
+$query = "INSERT into booking(user_id,massage_time,time,reason,massage_type,price,created)
+		VALUES('$user_id','$massage_time','$time','$reason','$massage_type','$price','$created')";
         //echo $query;  
         //die("m here");
 		//$results = mysqli_query($con, $query); 
