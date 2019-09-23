@@ -14,8 +14,9 @@ if(!isset($_SESSION["email"])){
 		$userid = mysqli_fetch_assoc($result)['id'];
 	}
 
-	$query2 = "SELECT * FROM booking WHERE user_id='$userid'";
+	$query2 = "SELECT * FROM booking";
 	$result = mysqli_query($con,$query2) or die(mysql_error());
+
 	if (mysqli_num_rows($result) > 0) {
 		// output data of each row
 	while($row = mysqli_fetch_assoc($result)) {
@@ -174,7 +175,7 @@ $current_date= $current_date->format('Y-m-d');
 <div id="dialog-message" title="Important Message" style="display:none;">
   <p>
     <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    You can cancle your booking within 24 hours only.
+    You can get charged by $10 if you cancel your booking after 24 hours .
   </p>
 </div>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonyous"></script>
