@@ -80,7 +80,8 @@ $current_date= $current_date->format('Y-m-d');
 <div style="text-align:center;">
 <table style="text-align:center;">
   <tr>
-    <th>Massage Date Time</th>
+    <th>Massage Date</th>
+	<th>Massage Time</th>
     <th>Reason</th>
 	<th>Massage Type</th>
 	<th>Package</th>
@@ -108,7 +109,8 @@ $query1 = "SELECT * FROM booking WHERE user_id='$userid'";
 		$submitted_date= $submitted_date->format('Y-m-d');
 		
 			echo "<tr>";
-    		echo"<td>".$submitted_date."</td>";
+			echo"<td>".$submitted_date."</td>";
+			echo"<td>".$row['time']."</td>";
 			echo"<td>".$row['reason']."</td>";
 			echo"<td>".$row['massage_type']."</td>";
 			echo"<td>".$row['price']."</td>";
