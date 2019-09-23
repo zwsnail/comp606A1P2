@@ -33,56 +33,9 @@ if (isset($_POST['massage_time'])){   //check if fullname is there
             $result = mysqli_query($con,$query);   //send data to database
      
     if($result){   //true if no error in data insertion
-            /*$email = "mr.sahil.in@gmail.com";
-            $to_id = $user_email;
-            $message = "Hello Dear,";
-            $message .= "Your appointment for suport massage is done. Please come at".$_POST['massage_time'];
-            $message .= "Thanks.";
-            $subject = $_POST['price'];
-        
-            $mail = new PHPMailer;
-            $mail->isSMTP();
-            $mail->Host = 'localhost';
-            $mail->Port = 25;
-            $mail->SMTPSecure = false;
-            $mail->SMTPAuth = false;
-            $mail->Username = $email;
-            $mail->addAddress($to_id);
-            $mail->Subject = $subject;
-            $mail->msgHTML($message);
-            if (!$mail->send()) {
-                $error = "Mailer Error: " . $mail->ErrorInfo;
-                echo '<p id="para">'.$error.'</p>';
-                die("hello die mail");
-            }  
-            else {
-                echo '<p id="para">Message sent!</p>';
-                die("m here");
-            }*/
-
-            echo "sending email";
-
-            
-			//Sending the email function below. 
+           //Sending the email function below. 
 			//Send email via Gmail SMTP server in PHP
-			<<<_END
-			<script type="text/javascript">
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-43981329-1']);
-			_gaq.push(['_trackPageview']);
-			(function() {
-			var ga = document.createElement('script');
-			ga.type = 'text/javascript';
-			ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(ga, s);
-			})();
-			</script>
-			_END;
-
-
-            // require 'email/PHPMailerAutoload.php';
+	 // require 'email/PHPMailerAutoload.php';
             require_once("email/PHPMailerAutoload.php");
 
             $email = "wangbin2018727@gmail.com";
@@ -168,4 +121,4 @@ if (isset($_POST['massage_time'])){   //check if fullname is there
         	// header("Location: user_profile.php");
         }
         // else echo "didn't transfer";
-}//if
+}//if 
