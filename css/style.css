@@ -14,6 +14,10 @@ body{
 .error {
     color: red;
 }
+.row.form_container {
+    padding: 10px;
+    margin: 50px;
+}
 /* table style */
 table {
     font-family: arial, sans-serif;
