@@ -134,7 +134,7 @@ $current_date= $current_date->format('Y-m-d');
 						</div>
 					</div>
 					<div class="form-group">
-						<input type="submit" name="register" id="register" value="Register" class="btn btn-primary btn-block">
+						<input type="submit" name="register" id="register" value="Make a Booking" class="btn btn-primary btn-block">
 					</div>
 				</form>
 			</div>

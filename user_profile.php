@@ -85,7 +85,7 @@ $current_date= $current_date->format('Y-m-d');
 	<th>Massage Type</th>
 	<th>Package</th>
 	<th>Update Booking</th>
-	<th>Cancle Booking</th>
+	<th>Cancel Booking</th>
 	
 	
   </tr>
@@ -114,9 +114,9 @@ $query1 = "SELECT * FROM booking WHERE user_id='$userid'";
 			echo"<td>".$row['price']."</td>";
 			echo"<td><a href='edit_booking.php?id=".$row['id']."'>Edit</a></td>";
 			if($submitted_date <= $current_date && $after_24 <= $current_date){
-				echo"<td><a href='cancle_booking.php?id=".$row['id']."&is_late=Yes'>Cancle</a> with late fee.</td>";
+				echo"<td><a href='cancle_booking.php?id=".$row['id']."&is_late=Yes'>Cancel</a> with late fee.</td>";
 			}else{
-				echo"<td><a href='cancle_booking.php?id=".$row['id']."&is_late=No''>Cancle</a></td>";
+				echo"<td><a href='cancle_booking.php?id=".$row['id']."&is_late=No''>Cancel</a></td>";
 			}
 
   			echo"</tr>";
