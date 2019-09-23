@@ -1,11 +1,18 @@
 <?php
 require('db_connect.php');
+require('header.php');
 session_start();
 if(!isset($_SESSION["email"])){
 	header("Location: login_first.php");
 	exit(); 
 }else{
 	$email = $_SESSION["email"];
+	$query = "SELECT * FROM user WHERE email='$email'";
+	$result = mysqli_query($con,$query) or die(mysql_error());
+    //print_r($result);
+	if($result != null){
+		$userid = mysqli_fetch_assoc($result)['id'];
+	}
 	$booking_id = $_GET["id"];
 	$query1 = "SELECT * FROM booking WHERE id='$booking_id'";
 	$result = mysqli_query($con,$query1) or die(mysql_error());
@@ -13,11 +20,52 @@ if(!isset($_SESSION["email"])){
 		// output data of each row
 	$row = mysqli_fetch_assoc($result);
 		//echo $row['massage_time'];
-		
-		//echo $row['reason'];
-		//echo $row['price'];
-		//die("hello");
+	
 	}
+	$query2 = "SELECT * FROM booking";
+	$result = mysqli_query($con,$query2) or die(mysql_error());
+	if (mysqli_num_rows($result) > 0) {
+		// output data of each row
+	while($row = mysqli_fetch_assoc($result)) {
+		// output data of each row
+		//print_r($row);
+	    $massage_date =  $row['massage_time'];
+		$massage_time = $row['time'];
+		?>
+		<script>
+		$( document ).ready(function() {
+		var massage_date = "<?php echo $row['massage_time']; ?>";
+		var massage_time = "<?php echo $row['time']; ?>";
+        var date = $("#massage_time").val();
+		var time = $("#time").val();
+		$("#massage_time").on("change", function () {
+    		var date = $(this).val();
+			if(massage_date == date && massage_time == time){
+		}
+   			});
+		$("#time").on("change", function () {
+    		var time = $(this).val();
+			if(massage_date == date && massage_time == time){
+				//alert("#time option[value='"+time+"']");
+		     $("#time option[value='"+time+"']").prop("disabled",true);
+		}else{
+			$("#time option[value='"+time+"']").removeAttr("disabled");
+		}
+   		});
+		   if(massage_date == date && massage_time == time){
+			//alert("#time option[value='"+time+"']");
+		     $("#time option[value='"+time+"']").prop("disabled",true);
+          //alert("matched");
+		 
+		}else{
+			$("#time option[value='"+time+"']").removeAttr("disabled");
+		}
+		 });
+		
+		</script>
+		<?php
+	}
+}
 	
 }
 ?>
@@ -68,17 +116,17 @@ $current_date= $current_date->format('Y-m-d');
 	<div class="container mt-4">
 	<!-- booking form -->
 
-		<div class="row">
+		<div class="row form_container">
 			<div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
-				<h2 class="text-center mt-2">Booking</h2>
+				<h2 class="text-center mt-2">Change Booking</h2>
 				<form action="update_booking.php" method="post" role="form" class="p-2" id="booking-frm">
 				    <input type="hidden" value="<?php echo $booking_id; ?>" name="booking_id">
                     <div class="form-group">
-						<label>Choose an appointment date<input type="date" name="massage_time" class="form-control" value="<?php echo $submitted_date;?>" min ="<?php echo $min_date; ?>" required></label>
+						<label>Choose an appointment date<input type="date" name="massage_time" id="massage_time" class="form-control" value="<?php echo $submitted_date;?>" min ="<?php echo $min_date; ?>" required></label>
 					</div>
 					<div class="form-group">
 					 <label for="time">Select Time</label>
-				      <select  class="form-control" name="time" id="sel">
+				      <select  class="form-control" name="time" id="time">
 				        <option name="time" value="11:00" <?php if ($row['time'] == "11:00" ) echo 'selected ' ; ?>>11:00</option>
 				        <option name="time" value="12:00" <?php if ($row['time'] == "12:00" ) echo 'selected ' ; ?>>12:00</option>
 				        <option name="time" value="1:00" <?php if ($row['time'] == "1:00" ) echo 'selected ' ; ?>>1:00</option>
@@ -120,7 +168,7 @@ $current_date= $current_date->format('Y-m-d');
 					</div>
 					
 					<div class="form-group">
-						<input type="submit" name="register" id="register" value="Register" class="btn btn-primary btn-block">
+						<input type="submit" name="register" id="register" value="Update Booking" class="btn btn-primary btn-block">
 					</div>
 				</form>
 
@@ -159,14 +207,20 @@ $current_date= $current_date->format('Y-m-d');
                     url: "check_email.php",
                     type: "post"
                  }
-        }
+        },
+		time:{
+			required: true
+		}
     },
     messages: {
         email: {
             required: "Please enter your email address.",
             email: "Please enter a valid email address.",
             remote: "Email does not exist. please sign up."
-        }
+        },
+		time:{
+			required: "This time is already booked. Please choose other timing."
+		}
     }
 	});
 		 
