@@ -1,22 +1,43 @@
+<?php include_once("header.php");?> 
+
 <style>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width:50%; 
-  margin-left:25%;
-   margin-right:25%; 
+  width:70% !important; 
+  margin-left:15% !important;
+margin-right:15% !important; 
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  border: 2px solid #dddddd !important;
+  text-align: left !important;
+  padding: 8px !important;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #dddddd !important;
 }
 </style>
+<style>
+ body {
+    background-image: url(images/g8.jpg);
+    background-size: cover;
+	color: #000;
+    font-size: 16px;
+    font-weight: 400;
+}
+a, a:hover, a:focus {
+    color: #23527c;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.user_area {
+    margin: 70px;
+    color: #000;
+}
+</style>
+
 <?php
 require('db_connect.php');
 session_start();
@@ -49,7 +70,7 @@ date_default_timezone_set("Pacific/Auckland");
 $current_date = new DateTime(); // Date object using current date and time
 $current_date= $current_date->format('Y-m-d'); 
 ?>
-<div class='form' style="text-align:center;">
+<div class='form user_area' style="text-align:center;">
 <h1>Welcome <?php echo $username; ?></h1>
 <h2 >Your Details</h2>
 <h3>Email: <?php echo $email; ?></h3>
@@ -120,4 +141,3 @@ $query1 = "SELECT * FROM booking WHERE user_id='$userid'";
 	?>
 </div>
 </div>
-
