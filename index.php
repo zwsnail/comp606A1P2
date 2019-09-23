@@ -104,10 +104,8 @@
 					<!-- Nav tabs -->
 					 <ul class="nav nav-tabs rs-agileits-tabs">
 						<li class="active"><a href="#Tab1" data-toggle="tab">Deep Tissue Massage</a></li>
-						<li><a href="#Tab2" data-toggle="tab">Aromatherapy Massage</a></li>
-						<li><a href="#Tab3" data-toggle="tab">Sports Massage</a></li>
-						<li><a href="#Tab4" data-toggle="tab">Therapeutic Massage</a></li>
-						<li><a href="#Tab5" data-toggle="tab">Relaxation Massage</a></li>
+						<li><a href="#Tab2" data-toggle="tab">Sports Massage</a></li>
+						<li><a href="#Tab3" data-toggle="tab">Relaxation Massage</a></li>
 					</ul>
 				</div>
 				<div class="col-sm-9 col-md-10 tab-grid-right">
