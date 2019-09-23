@@ -134,20 +134,6 @@
 									<img src="images/g2.jpg" alt=""/>
 								</div>
 								<div class="col-md-6 care-rstext"> 
-									<h4>Aromatherapy Massage</h4>
-									<p>Aromatherapy massage appears to reduce the pain and discomfort of menstrual cramps.
-									Aromatherapy massage reduced the severity of pain compared to massage therapy with almond oil or no oil.</p>
-									
-								</div>
-								<div class="clearfix"> </div>
-							</div> 
-						</div>
-						<div class="tab-pane" id="Tab3">
-							<div class="agileits-text">
-								<div class="col-md-6 care-rslimg"> 
-									<img src="images/g2.jpg" alt=""/>
-								</div>
-								<div class="col-md-6 care-rstext"> 
 									<h4>Sports Massage</h4>
 									<p>Sports and remedial massage is an effective and beneficial form of physical therapy, 
 									not only for active sports people, or those requiring therapy after a soft tissue injury, 
@@ -157,21 +143,7 @@
 								<div class="clearfix"> </div>
 							</div>
 						</div>
-						<div class="tab-pane" id="Tab4">
-							<div class="agileits-text">
-								<div class="col-md-6 care-rslimg"> 
-									<img src="images/g2.jpg" alt=""/>
-								</div>
-								<div class="col-md-6 care-rstext"> 
-									<h4>Therapeutic Massage</h4>
-									<p>Therapeutic massage is often used in the process of recovering from injury or illness your body may experience unwanted aches and pains, 
-									your deep tissue massage program will be designed to work specifically on those areas to help relieve tension, restore mobility, and eliminate pain.</p>
-									
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-						<div class="tab-pane" id="Tab5">
+						<div class="tab-pane" id="Tab3">
 							<div class="agileits-text">
 								<div class="col-md-6 care-rslimg"> 
 									<img src="images/g2.jpg" alt=""/>
