@@ -51,8 +51,6 @@ if(isset($_SESSION["therapist_email"])){
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-right">
 								<li><a href="index.php" class="link-kumya active scroll"><span data-letters="Home">Home</span></a></li>
-								<li><a href="about.php" class="link-kumya"><span data-letters="About">About</span></a></li>	
-								<li><a href="contact.php" class="link-kumya"><span data-letters="Contact">Contact</span></a></li>
 								<?php if(isset($_SESSION["email"])){	
 									echo'<li><a href="user_profile.php" class="link-kumya"><span data-letters="profile">Profile</span></a></li>';								
 									echo'<li><a href="logout.php" class="link-kumya"><span data-letters="Logout">Logout</span></a></li>';
