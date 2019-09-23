@@ -2,15 +2,14 @@
 	<div class="footer">
 		<div class="container">
 			<div class="col-md-5 ftr-wthree-grids">
-				<h3>Menu</h3>
-				<a href="single.html">1</a>
-				<a href="single.html">2</a> 
-				<a href="single.html">3</a>
+				<h3>About Us</h3>
+				We are open Monday to Friday.<br>
+				Opening Hours: 10.00 AM  to 6:00 PM
 			</div> 
 			<div class="col-md-3 ftr-wthree-grids">
 				<h3>Contact Me</h3>
-				<p>Massage Clinic Hamilton | Bookings 07 856 0000<br>
-					<span>Office: 123456789</span>
+				<p>Massage Clinic Hamilton | Bookings +64 123456789<br>
+					<span>Office: +64 0213654789</span>
 				</p>
 				
 			</div> 
@@ -20,7 +19,7 @@
 			</div>
 			<div class="clearfix"> </div>
 			<div class="footer-copy">
-				<p>@ copyright 2005-2019</p>
+				<p>@ Work done By Wei and Raveena.</p>
 			</div>
 		</div>
 	</div>
