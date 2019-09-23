@@ -24,14 +24,14 @@ if(!isset($_SESSION["email"])){
 <?php
 date_default_timezone_set("Pacific/Auckland");
 $date = new DateTime();
-$min_date= $date->format('Y-m-d\TH:i:s');
+$min_date= $date->format('Y-m-d');
 
 $submitted_date = $row['massage_time'];
 $submitted_date = new DateTime($submitted_date);
-$submitted_date= $submitted_date->format('Y-m-d\TH:i:s');
+$submitted_date= $submitted_date->format('Y-m-d');
 
 $current_date = new DateTime(); // Date object using current date and time
-$current_date= $current_date->format('Y-m-d\TH:i:s'); 
+$current_date= $current_date->format('Y-m-d'); 
 
 
 ?>
@@ -74,7 +74,31 @@ $current_date= $current_date->format('Y-m-d\TH:i:s');
 				<form action="update_booking.php" method="post" role="form" class="p-2" id="booking-frm">
 				    <input type="hidden" value="<?php echo $booking_id; ?>" name="booking_id">
                     <div class="form-group">
-						<label>Choose an appointment date<input type="datetime-local" name="massage_time" class="form-control" value="<?php echo $submitted_date;?>" min ="<?php echo $min_date; ?>" required></label>
+						<label>Choose an appointment date<input type="date" name="massage_time" class="form-control" value="<?php echo $submitted_date;?>" min ="<?php echo $min_date; ?>" required></label>
+					</div>
+					<div class="form-group">
+					 <label for="time">Select Time</label>
+				      <select  class="form-control" name="time" id="sel">
+				        <option name="time" value="11:00" <?php if ($row['time'] == "11:00" ) echo 'selected ' ; ?>>11:00</option>
+				        <option name="time" value="12:00" <?php if ($row['time'] == "12:00" ) echo 'selected ' ; ?>>12:00</option>
+				        <option name="time" value="1:00" <?php if ($row['time'] == "1:00" ) echo 'selected ' ; ?>>1:00</option>
+				        <option name="time"  value="2:00" <?php if ($row['time'] == "2:00" ) echo 'selected ' ; ?>>2:00</option>
+						<option name="time"  value="3:00" <?php if ($row['time'] == "3:00" ) echo 'selected ' ; ?>>3:00</option>
+						<option name="time"  value="4:00" <?php if ($row['time'] == "4:00" ) echo 'selected ' ; ?>>4:00</option>
+				      </select>
+
+					</div>
+					<div class="form-group">
+					 <label for="massage_type">Massage Type</label>
+				      <select  class="form-control" name="massage_type" id="sel">
+				        <option name="massage_type" value="Deep Tissue Massage"  <?php if ($row['massage_type'] == "Deep Tissue Massage" ) echo 'selected ' ; ?>>Deep Tissue Massage</option>
+				        <option name="massage_type" value="Aromatherapy Massage"  <?php if ($row['massage_type'] == "Aromatherapy Massage" ) echo 'selected ' ; ?>>Aromatherapy Massage</option>
+				        <option name="massage_type" value="Sports Massage"  <?php if ($row['massage_type'] == "Sports Massage" ) echo 'selected ' ; ?>>Sports Massage</option>
+				        <option name="massage_type"value="Therapeutic Massage"  <?php if ($row['massage_type'] == "Therapeutic Massage" ) echo 'selected ' ; ?>>Therapeutic Massage</option>
+						<option name="massage_type"value="Relaxation Massage"  <?php if ($row['massage_type'] == "Relaxation Massage" ) echo 'selected ' ; ?>>Relaxation Massage</option>
+
+				      </select>
+
 					</div>
 					<div class="form-group">
 					 <label for="sel">May I know the reason you want to have the massage?(hold shift to select more than one)</label>
